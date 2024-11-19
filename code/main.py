@@ -16,8 +16,8 @@ def dibujar_texto(texto, fuente, color, x, y):
 
 class MainGame:  # Clase principal del juego
     def __init__(self):
-        pygame.init()
         pygame.font.init()  # Inicializar el módulo de fuentes de Pygame
+        pygame.init()
         self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption('Survivor')
         self.clock = pygame.time.Clock()
@@ -147,6 +147,9 @@ class MainGame:  # Clase principal del juego
                 if event.type == self.enemy_event:
                     Enemy(choice(self.spawn_positions), choice(list(self.enemy_frames.values())), (self.all_sprites, self.enemy_sprites), self.player, self.collision_sprites)
 
+            if not self.running:
+                break  # Salir del bucle si se ha solicitado salir
+
             # update
             self.gun_timer()
             self.input()
@@ -155,14 +158,16 @@ class MainGame:  # Clase principal del juego
             self.player_collision()
             self.check_invulnerability()  # Verificar invulnerabilidad
 
-            dibujar_texto("Forest War",
-                          pygame.font.SysFont("Arial", 30),
-                          (255, 255, 255), 300, 100)
-
             # draw
             self.display_surface.fill('black')
             self.all_sprites.draw(self.player.rect.center)
             self.draw_lives()  # Dibujar las vidas
+
+            # Dibujar texto
+            dibujar_texto("Forest War",
+                        pygame.font.SysFont(None, 30),
+                        (255, 255, 255), 300, 100)
+
             pygame.display.update()
 
         pygame.quit()

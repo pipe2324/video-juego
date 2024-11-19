@@ -52,8 +52,8 @@ class Menu:
 
 class Game:
     def __init__(self):
-        pygame.init()
         pygame.font.init()  # Inicializar el módulo de fuentes de Pygame
+        pygame.init()
         self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption('Survivor')
         self.clock = pygame.time.Clock()
@@ -102,9 +102,9 @@ class Game:
 
     def juego(self, main_game_class):
         """Pantalla del juego principal."""
-        self.running = False  # Detener el menú
         main_game = main_game_class()  # Crear una instancia del juego principal
         main_game.run()  # Ejecutar el juego principal
+        self.running = True  # Reiniciar el menú después de que el juego principal termine
 
 if __name__ == '__main__':
     game = Game()

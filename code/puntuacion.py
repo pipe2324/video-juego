@@ -32,8 +32,8 @@ def mostrar_puntuacion(score, main_game_class, menu_class):
     pygame.font.init()  # Asegurarse de inicializar pygame.font
     display_surface = pygame.display.set_mode((800, 600))
     pygame.display.set_caption('Puntuación')
-    font = pygame.font.SysFont("Arial", 50)
-    small_font = pygame.font.SysFont("Arial", 30)
+    font = pygame.font.SysFont(None, 50)
+    small_font = pygame.font.SysFont(None, 30)
     running = True
 
     # Cargar la imagen de fondo
